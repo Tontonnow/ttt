@@ -184,9 +184,13 @@ class YouKu:
                     keys[audio_lang] = key
                 else:
                     key = keys[audio_lang]
+                if audio == "":
+                    lang = audio_lang
+                else:
+                    lang = audio + "_" + audio_lang
                 video_lists.append(
                     [title, size + "M", f"{width}x{height}", drm_type, key, video["stream_type"],
-                     audio + "_" + audio_lang, m3u8_url,
+                     lang, m3u8_url,
                      video.get("size", 0)])
             video_lists = sorted(video_lists, key=lambda x: x[-1], reverse=True)
             tb = tabulate([[*video_lists[i][:7]] for i in range(len(video_lists))],
